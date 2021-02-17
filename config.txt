@@ -1,0 +1,106 @@
+mkdir nombreProyecto
+cd nombreProyecto
+git init
+npm init -y
+code .
+
+crear estructura del proyecto
+
+public
+-index.html
+src
+-components
+-index.js
+
+npm install --save react react-dom
+
+npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-loader
+
+Crear archivo en raiz con el nombre.babelrc
+y poner esto adentro
+
+{
+  ""presets"": [
+    ""@babel/preset-env"",
+    ""@babel/preset-react""
+  ],
+}
+
+crear archivo webpack.config.js
+
+y pegamos la siguiente configuracion
+
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.html$/,
+        use: {
+          loader: 'html-loader',
+        },
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      filename: './index.html',
+    }),
+  ],
+}
+
+
+y despues creamos el script
+
+{
+  ""scripts"": {
+    ""build"": ""webpack --mode production""
+  },
+}
+
+
+instalar Dev Server
+
+
+npm install --save-dev webpack-dev-server
+
+"start": "webpack serve --mode development --env development"
+
+
+npm install --save-dev eslint babel-eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y
+
+
+npm install  --save-dev --save-exact css-loader
+
+npm install --save-dev mini-css-extract-plugin css-loader node-sass sass-loader
+
+npm install file-loader --save-dev
+
+npm install --save prop-types
+
+
+
+Instalacion de React Router y Redux
+
+
+npm install redux react-redux --save
+
+
